@@ -2,6 +2,8 @@
 from flask import Blueprint, jsonify, request
 from store import DB as db
 
+from messenger.handler import handleMessage
+
 API_BP = Blueprint('api', __name__)
 
 @API_BP.route('/')
@@ -9,21 +11,13 @@ def hello():
     return "Hello World!"
 
 
-@API_BP.route('/<name>')
-def hello_name(name):
-    return "Hello {}!".format(name)
+@API_BP.route('/webhook_fb')
+def webhook_fb_verification():
+    mode = request.args.get('hub.mode')
+    token = request.args.get('hub.verify_token')
+    challenge = request.args.get('hub.challenge')
 
-
-@API_BP.route('/webhook_fb', methods=['POST'])
-def webhook_fb():
-    req_data = request.get_json()
-    print(req_data)
-
-    mode = req_data['hub.mode']
-    token = req_data['hub.verify_token'];
-    challenge = req_data['hub.challenge'];
-
-    VERIFY_TOKEN = "<YOUR_VERIFY_TOKEN>"
+    VERIFY_TOKEN = "this_is_a_token"
 
     if (mode and token):
         if (mode == 'subscribe' and token == VERIFY_TOKEN):
@@ -32,6 +26,18 @@ def webhook_fb():
             return {}, 403
 
     return {}, 403
+
+
+@API_BP.route('/webhook_fb', methods=['POST'])
+def webhook_fb():
+    req_data = request.get_json()
+    print(req_data)
+    if (req_data['object'] == 'page'):
+        for entry in req_data['entry']:
+            webhook_event = entry['messaging'][0];
+            handleMessage(webhook_event['sender']['id'], webhook_event['message']['text'])
+
+    return "", 200
 
 
 @API_BP.route('/fetch_data', methods=['GET'])

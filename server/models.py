@@ -1,17 +1,18 @@
 """ Model definitions """
+import datetime
+
 from store import DB as db
 
-class Example(db.Model):
-    __tablename__ = 'example'
+
+class ClientData(db.Model):
+    __tablename__ = 'client_data'
 
     id = db.Column(db.Integer, primary_key=True)
+    client_id = db.Column(db.String)
+    config_id = db.Column(db.String)
 
-    def __init__(self):
-        pass
+    prompt_key = db.Column(db.String)
+    prompt_text = db.Column(db.String)
 
-    def __repr__(self):
-        pass
-
-    def serialize(self):
-        pass
-
+    response = db.Column(db.String)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now)
