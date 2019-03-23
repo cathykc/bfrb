@@ -14,15 +14,17 @@ export default class App extends React.Component {
       <Router>
         <div>
           <Nav />
-          <Route exact={true} path="/" component={Landing} />
-          <Route
-            path="/dashboard*"
-            component={Dashboard}
-          />
-          <Route
-            path="/config"
-            component={Config}
-          />
+          <div className="content">
+            <Route exact={true} path="/" component={Landing} />
+            <Route
+              path="/dashboard*"
+              component={Dashboard}
+            />
+            <Route
+              path="/config"
+              component={Config}
+            />
+          </div>
         </div>
       </Router>
     );
