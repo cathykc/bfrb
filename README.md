@@ -12,7 +12,8 @@ In different terminal windows:
 ### Frontend
 ```
 cd client
-cd yarn start
+yarn install
+yarn start
 ```
 
 Check that the frontend is running by going to http://localhost:3000
