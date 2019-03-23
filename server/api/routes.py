@@ -16,11 +16,50 @@ def hello_name(name):
 @API_BP.route('/fetch_data', methods=['GET'])
 def fetch_tasks():
     client_id = request.args.get('client_id')
-    return jsonify([
-        {
-            'client_id': client_id,
-            'config_id': 'example_config',
-            'prompt': 'What are you doing?',
-            'response': 'I biting nails',
-        }
-    ])
+    return jsonify({
+        'session_id': 1,
+        'data': [
+            {
+                'key': "site",
+                'question_text': "IM A QEUSTION",
+                'answer': "IM AN ANSWER",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "IM A QEUSTION",
+                'answer': "IM AN ANSWER",
+                'timestamp': ""
+            },
+            {
+                'key': "strength_urges",
+                'question_text': "IM A QEUSTION",
+                'answer': "IM AN ANSWER",
+                'timestamp': ""
+            },
+            {
+                'key': "awareness",
+                'question_text': "IM A QEUSTION",
+                'answer': "IM AN ANSWER",
+                'timestamp': ""
+            },
+            {
+                'key': "strength_resist",
+                'question_text': "IM A QEUSTION",
+                'answer': "IM AN ANSWER",
+                'timestamp': ""
+            },
+            {
+                'key': "severity",
+                'question_text': "IM A QEUSTION",
+                'answer': "IM AN ANSWER",
+                'timestamp': ""
+            },
+            {
+                'key': "thoughs",
+                'question_text': "IM A QEUSTION",
+                'answer': "IM AN ANSWER",
+                'timestamp': ""
+            },
+        ]
+    })
