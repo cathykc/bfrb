@@ -25,29 +25,29 @@ export default class Nav extends React.Component<{}, NavState> {
     return (
       <div className="nav-menu">
         <Menu secondary={true}>
-          <Link to="/">
-            <Menu.Item
-              name="home"
-              active={activeItem === 'home'}
-              onClick={this.handleItemClick}
-            />
-          </Link>
-          <Link to="/dashboard">
-            <Menu.Item
-              name="dashboard"
-              active={activeItem === 'dashboard'}
-              onClick={this.handleItemClick}
-            />
-          </Link>
-          <Link to="/config">
-            <Menu.Item
-              name="config"
-              active={activeItem === 'config'}
-              onClick={this.handleItemClick}
-            >
-              Configure CBTs
-            </Menu.Item>
-          </Link>
+          <Menu.Item
+            as={Link}
+            name="home"
+            active={activeItem === 'home'}
+            onClick={this.handleItemClick}
+            to="/"
+          />
+          <Menu.Item
+            as={Link}
+            name="dashboard"
+            active={activeItem === 'dashboard'}
+            onClick={this.handleItemClick}
+            to="/dashboard"
+          />
+          <Menu.Item
+            as={Link}
+            name="config"
+            active={activeItem === 'config'}
+            onClick={this.handleItemClick}
+            to="/config"
+          >
+            Configure CBTs
+          </Menu.Item>
         </Menu>
       </div>
     );
