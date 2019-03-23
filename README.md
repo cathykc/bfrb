@@ -37,6 +37,7 @@ createdb bfrb_dev
 ### Backend requirements
 ```
 virtualenv env
+source activate env/bin/activate
 cd server
 pip install -r requirements.txt
 ```
