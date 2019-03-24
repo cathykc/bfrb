@@ -1,4 +1,5 @@
 */.env
 env
+venv
 *.pyc
 /client/build

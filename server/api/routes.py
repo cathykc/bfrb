@@ -35,7 +35,10 @@ def webhook_fb():
     if (req_data['object'] == 'page'):
         for entry in req_data['entry']:
             webhook_event = entry['messaging'][0];
-            handleMessage(webhook_event['sender']['id'], webhook_event['message']['text'])
+            qr_payload = None
+            if 'quick_reply' in webhook_event['message']:
+                qr_payload = webhook_event['message']['quick_reply']['payload']
+            handleMessage(webhook_event['sender']['id'], webhook_event['message']['text'], qr_payload)
 
     return "", 200
 

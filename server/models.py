@@ -26,3 +26,7 @@ class ChatState(db.Model):
     client_id = db.Column(db.String)
     prompt_key = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
+
+    def __init__(self, client_id, prompt_key):
+        self.client_id = client_id
+        self.prompt_key = prompt_key
