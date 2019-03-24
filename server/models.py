@@ -10,6 +10,7 @@ class ClientData(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_id = db.Column(db.String)
     config_id = db.Column(db.String)
+    session_id = db.Column(db.Integer)
 
     prompt_key = db.Column(db.String)
     prompt_text = db.Column(db.String)
