@@ -123,12 +123,12 @@ export default class ConfigEditor extends React.Component {
                   </Form.Field>
                 )}
                 <Form.Field inline={true}>
-                  <label>Save answer as:</label>
+                  <label>Question ID:</label>
                   <Input
                     style={{ marginBottom: 3 }}
                     className="editable-underline"
                     transparent={true}
-                    placeholder="answer"
+                    placeholder="e.g. urge_strength"
                     value={question.prompt_key}
                     onChange={event =>
                       this.editQuestion(idx, {

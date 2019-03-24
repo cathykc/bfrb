@@ -28,6 +28,7 @@ export default class NewConfig extends React.Component<NewConfigProps, NewConfig
     this.state.config.abt_config = abtConfig;
     if (this.state.name) {
       this.props.createConfig({ name: this.state.name, config: this.state.config, id: null });
+      this.setState({ name: null, config: { abt_config: [] }});
     } else {
       alert('You need to input a name to save this config.');
     }
@@ -36,7 +37,7 @@ export default class NewConfig extends React.Component<NewConfigProps, NewConfig
   public render(): JSX.Element {
     return (
       <div>
-        <Input label="Config name" placeholder="e.g. Trichotillomania" onChange={this.handleNameChange}/>
+        <Input label="Treatment name" placeholder="e.g. Trichotillomania" onChange={this.handleNameChange}/>
         <hr />
         <ConfigEditor initialConfig={this.state.config.abt_config} onChange={this.handleAbtChange}/>
       </div>

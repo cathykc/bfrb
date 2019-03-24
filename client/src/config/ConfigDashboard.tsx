@@ -6,6 +6,8 @@ import { Grid, Menu, Segment } from 'semantic-ui-react';
 import Config from './Config';
 import NewConfig from './NewConfig';
 
+import './ConfigDashboard.css';
+
 interface ConfigDashboardState {
   activeConfig: number;
   configs: any[];
@@ -15,7 +17,7 @@ export default class ConfigDashboard extends React.Component<{}, ConfigDashboard
   constructor(props: any) {
     super(props);
     this.state = {
-      activeConfig: 1,
+      activeConfig: -1,
       configs: [],
     };
   }
@@ -68,44 +70,46 @@ export default class ConfigDashboard extends React.Component<{}, ConfigDashboard
     const { activeConfig, configs } = this.state;
     const activeConfigObj = find(configs, { 'id': activeConfig});
     return(
-      <Grid>
-        <Grid.Column width={3}>
-          <Menu fluid={true} vertical={true} tabular={true}>
-            {map(configs, config => {
-              return (
-                <Menu.Item
-                  key={config.id}
-                  data={config.id}
-                  active={activeConfig === config.id}
-                  onClick={this.handleItemClick}
-                >
-                  {config.name}
-                </Menu.Item>
-              );
-            })}
-            <Menu.Item
-              active={activeConfig === -1}
-              onClick={this.handleNewItemClick}
-            >
-              Create a new treatment
-            </Menu.Item>
-          </Menu>
-        </Grid.Column>
+      <div className="config-container">
+        <Grid>
+          <Grid.Column width={3}>
+            <Menu fluid={true} vertical={true} tabular={true}>
+              {map(configs, config => {
+                return (
+                  <Menu.Item
+                    key={config.id}
+                    data={config.id}
+                    active={activeConfig === config.id}
+                    onClick={this.handleItemClick}
+                  >
+                    {config.name}
+                  </Menu.Item>
+                );
+              })}
+              <Menu.Item
+                active={activeConfig === -1}
+                onClick={this.handleNewItemClick}
+              >
+                Create a new treatment
+              </Menu.Item>
+            </Menu>
+          </Grid.Column>
 
-        {activeConfig > -1 && <Grid.Column stretched={true} width={13}>
-          <Segment>
-            <Config
-              config={activeConfigObj}
-              saveConfig={this.handleSaveConfig}
-            />
-          </Segment>
-        </Grid.Column>}
-        {activeConfig === -1 && <Grid.Column stretched={true} width={13}>
-          <Segment>
-            <NewConfig createConfig={this.handleSaveConfig}/>
-          </Segment>
-        </Grid.Column>}
-      </Grid>
+          {activeConfig > -1 && <Grid.Column stretched={true} width={13}>
+            <Segment>
+              <Config
+                config={activeConfigObj}
+                saveConfig={this.handleSaveConfig}
+              />
+            </Segment>
+          </Grid.Column>}
+          {activeConfig === -1 && <Grid.Column stretched={true} width={13}>
+            <Segment>
+              <NewConfig createConfig={this.handleSaveConfig}/>
+            </Segment>
+          </Grid.Column>}
+        </Grid>
+      </div>
     );
   }
 }
