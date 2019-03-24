@@ -1,0 +1,9 @@
+.nav-menu {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.nav-menu {
+  border-bottom: 1px solid black;
+}

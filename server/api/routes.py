@@ -72,36 +72,158 @@ def fetch_tasks():
     return jsonify({
         'session_id': 1,
         'data': [
+            # What area of your body were you picking? (Quick response)
+            # response choices:
+            # - Scalp
+            # - Brows
+            # - Lashes
+            # - Public
+            # - Other
             {
                 'key': "site",
-                'question_text': "IM A QEUSTION",
-                'answer': "IM AN ANSWER",
+                'question_text': "Where did you ",
+                'answer': "Nails",
+                'timestamp': ""
+            },
+            # Where or what were you doing? (Quick response)
+            # response choices:
+            # - Work
+            # - School
+            # - Bedroom
+            # - Bathroom
+            # - Other
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "SCHOOL",
                 'timestamp': ""
             },
             {
                 'key': "context",
-                'question_text': "IM A QEUSTION",
-                'answer': "IM AN ANSWER",
+                'question_text': "",
+                'answer': "HOME",
                 'timestamp': ""
             },
             {
-                'key': "strength_urges",
+                'key': "context",
+                'question_text': "",
+                'answer': "HOME",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "HOME",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "WORK",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "WORK",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "WORK",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "WORK",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "WORK",
+                'timestamp': ""
+            },
+                        {
+                'key': "context",
+                'question_text': "",
+                'answer': "WORK",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "WORK",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "WORK",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "WORK",
+                'timestamp': ""
+            },
+                        {
+                'key': "context",
+                'question_text': "",
+                'answer': "HOME",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "HOME",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "HOME",
+                'timestamp': ""
+            },
+            {
+                'key': "context",
+                'question_text': "",
+                'answer': "WORK",
+                'timestamp': ""
+            },
+
+            # How strong was your urge? 
+            # response choice: 1-10 (Int)
+            {
+                'key': "strength_of_urge",
                 'question_text': "IM A QEUSTION",
                 'answer': "IM AN ANSWER",
                 'timestamp': ""
             },
+            # At what point did you notice? (quick question)
+            # response choice:
+            # - Before
+            # - During
+            # - After
             {
                 'key': "awareness",
                 'question_text': "IM A QEUSTION",
                 'answer': "IM AN ANSWER",
                 'timestamp': ""
             },
+            # How much willpower did you have to resist? 
+            # response choice: 1-10 (Int)
             {
                 'key': "strength_resist",
                 'question_text': "IM A QEUSTION",
                 'answer': "IM AN ANSWER",
                 'timestamp': ""
             },
+            # How many times did you (ie pull you hair)? 
+            # response choice: 0-Infinity (Int)
             {
                 'key': "severity",
                 'question_text': "IM A QEUSTION",
