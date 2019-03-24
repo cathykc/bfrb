@@ -39,14 +39,25 @@ def handleMessage(sender_psid, received_message, payload):
 
   # Route to right intervention from the menu
   elif last_chat_state.prompt_key == "menu":
-    if payload == "hi":
-      sendTextMessage(sender_psid, "hi", "Hi!")
-    elif payload == "is_pulling":
+
+    if payload == "is_pulling":
       sendTextMessage(sender_psid, "breathing_explain", "No need to fret. Kudos to you for hitting me up 😎! Let's first do a quick breathing exercise.")
       sendGIF(sender_psid, "breathing_gif", "https://media.giphy.com/media/3ouRtqtUQaw0PNQIz4/giphy.gif")
-      sendQuickReplies(sender_psid, "breathing_gif", "Do that for 30 seconds. Let me know when you're done.", [("I'm done", "breathing_done")])
+      sendQuickReplies(sender_psid, "breathing_gif", "Do that for 30 seconds. Let me know when you're done.", [("I'm done", "finish_breathe_flow")])
+
+    # Send breather
+    elif payload == "need_breather":
+      sendTextMessage(sender_psid, None, "Let's do a quick inhale-exhale exercise. Take a breather in your day! Do that for 30 seconds.")
+      sendGIF(sender_psid, "breathing_gif", "https://media.giphy.com/media/3ouRtqtUQaw0PNQIz4/giphy.gif")
+      sendQuickReplies(sender_psid, "solo_breathing_gif", "Let me know when you're done.", [("I'm done", "breathing_done")])
+
+    # Catch all
     else:
-      sendTextMessage(sender_psid, "hi", "Ok")
+      sendTextMessage(sender_psid, "hi", "👋")
+
+  # Send breathing excercise
+  elif last_chat_state.prompt_key == "solo_breathing_gif":
+    sendTextMessage(sender_psid, "finish_flow", "👋")
 
   # Send breathing excercise
   elif last_chat_state.prompt_key == "breathing_gif":
@@ -135,8 +146,8 @@ def handleMessage(sender_psid, received_message, payload):
   # Catchall menu
   elif is_onboarded:
     menuOptions = [
-      (u"I'm pulling 😔", "is_pulling"),
-      (u"Hi 👋", "hi"),
+      ("I'm pulling 😔", "is_pulling"),
+      ("I need a breather 💨", "need_breather"),
     ]
     sendQuickReplies(sender_psid, "menu", "How can I help? 👋", menuOptions)
 
