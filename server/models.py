@@ -16,3 +16,12 @@ class ClientData(db.Model):
 
     response = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
+
+
+class ChatState(db.Model):
+    __tablename__ = 'chat_state'
+
+    id = db.Column(db.Integer, primary_key=True)
+    client_id = db.Column(db.String)
+    prompt_key = db.Column(db.String)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now)
