@@ -92,11 +92,18 @@ export default class ScatterPlotGraph extends React.Component<Props, ScatterPlot
                         onMouseLeave={() => this.setState({value: false})}
                         width={chartWidth}
                         height={chartHeight}
+                        style={{
+                            'font-size': '12px'
+                        }}
                     >
                         <VerticalGridLines/>
                         <HorizontalGridLines/>
                         <XAxis/>
-                        <YAxis/>
+                        <YAxis
+                            style={{
+                                'margin-right': '10px'
+                            }}
+                        />
                         <MarkSeries {...markSeriesProps} />
                     </XYPlot>
                 </div>

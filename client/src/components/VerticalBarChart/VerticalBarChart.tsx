@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { XYPlot, HorizontalBarSeries, XAxis, YAxis } from 'react-vis';
+import { XYPlot, VerticalBarSeries, XAxis, YAxis } from 'react-vis';
 import './VerticalBarChart.css';
 
 interface Props {
@@ -11,15 +11,14 @@ interface VerticalBarChartState {
     data: any[];
 }
 
-const LOCATION = ['🏠', '🏫', '💻', '?'];
+const bodyLocation = ['Scalp', 'Brows', 'Lashes', 'Other'];
 
 function getRandomData() {
     return new Array(50).fill(0).map(row => {
         let day = Math.floor(Math.random() * (4));
         return {
-            x: Math.floor((Math.random() * 24) / 2) * 2,
-            y: LOCATION[day],
-            size: Math.random() * 15,
+            y: Math.floor((Math.random() * 24) / 2) * 2,
+            x: bodyLocation[day],
             color: Math.random() * 10,
             opacity: Math.random() * 0.5 + 0.5
         };
@@ -50,15 +49,15 @@ export default class VerticalBarChart extends React.Component<Props, VerticalBar
             <div className="verticalBarChart">
                 <h3 className="chartHeader">{chartTitle}</h3>
                 <XYPlot
-                    yType="ordinal"
+                    xType="ordinal"
                     strokeWidth={5}
-                    yDomain={LOCATION}
+                    xDomain={bodyLocation}
                     width={chartWidth}
                     height={chartHeight}
                 >
                     <XAxis />
                     <YAxis />
-                    <HorizontalBarSeries
+                    <VerticalBarSeries
                         color="#59E4EC"
                         data={data}
                     />

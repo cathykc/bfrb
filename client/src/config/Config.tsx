@@ -25,7 +25,7 @@ export default class Config extends React.Component<ConfigProps> {
     const { config, saveConfig } = this.props;
     config.config.abt_config = abtConfig;
     saveConfig(config);
-  };
+  }
 
   public render(): JSX.Element {
     // I'm sorry mom

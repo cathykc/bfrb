@@ -1,6 +1,7 @@
 import * as React from 'react';
-import VerticalBarChart from '../Graphs/VerticalBarChart';
-import ScatterPlotGraph from '../Graphs/ScatterPlotGraph';
+import HorizontalBarChart from '../HorizontalBarChart/HorizontalBarChart';
+import ScatterPlotGraph from '../ScatterPlotGraph/ScatterPlotGraph';
+import VerticalBarChart from '../VerticalBarChart/VerticalBarChart';
 
 interface DashboardState {
   data: any[];
@@ -66,8 +67,9 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
     
     return(
       <div>
-        <VerticalBarChart chartTitle={'Where did you pull?'} data={locationData}/>
+        <HorizontalBarChart chartTitle={'Where did you pull?'} data={locationData}/>
         <ScatterPlotGraph data={locationData} chartTitle={'When did you pull?'}/>
+        <VerticalBarChart chartTitle={'Site of pulling'} data={locationData}/>
       </div>
     );
   }
