@@ -1,5 +1,7 @@
 # BFRB
 
+A configurable chatbot digital therapeutic that augments therapists during habit-reversal therapy for hair pulling (Trichotillomania) and other impulse-control disorders.
+
 ## Start the application
 
 ### Environment variables
