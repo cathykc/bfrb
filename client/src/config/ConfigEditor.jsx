@@ -73,7 +73,10 @@ export default class ConfigEditor extends React.Component {
 
     // Hack to sim response
     this.setState({ isLoading: true })
-    setTimeout(() => this.setState({ isLoading: false, isSuccess: true }), 1000);
+    setTimeout(() => {
+      this.setState({ isLoading: false, isSuccess: true });
+      setTimeout(() => this.setState({ isSuccess: false }), 1000)
+    }, 500);
   };
 
   render() {
