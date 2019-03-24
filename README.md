@@ -2,6 +2,12 @@
 
 A configurable chatbot digital therapeutic that augments therapists during habit-reversal therapy for hair pulling (Trichotillomania) and other impulse-control disorders.
 
+### Configuring a CBT treatment
+![image](https://cl.ly/9035ffa5ec1e/Image%2525202019-03-24%252520at%25252011.26.47%252520AM.png)
+
+### Chatbot experience
+TBD
+
 ## Start the application
 
 ### Environment variables
