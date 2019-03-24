@@ -23,18 +23,18 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
   }
 
   componentDidMount() {
-    const clientId = 'example_id'; // hardcode this to fetch dummy data for now!
-    fetch(`/api/fetch_data?client_id=${clientId}`, {
-      method: 'GET',
-    }).then(fetchResponse => {
-      if (fetchResponse.status !== 200) {
-        // TO DO: handle group fetch error
-        throw new Error('Fetch not successful.');
-      }
-      return fetchResponse.json();
-    }).then(responseBody => {
-      this.setState({ data: responseBody.data });
-    });
+    // const clientId = 'example_id'; // hardcode this to fetch dummy data for now!
+    // fetch(`/api/fetch_data?client_id=${clientId}`, {
+    //   method: 'GET',
+    // }).then(fetchResponse => {
+    //   if (fetchResponse.status !== 200) {
+    //     // TO DO: handle group fetch error
+    //     throw new Error('Fetch not successful.');
+    //   }
+    //   return fetchResponse.json();
+    // }).then(responseBody => {
+    //   this.setState({ data: responseBody.data });
+    // });
   }
     
   filterLocationData(data: any[]) {
