@@ -6,6 +6,8 @@ A configurable chatbot digital therapeutic that augments therapists during habit
 ![image](https://cl.ly/e1ab9b826355/Screen%252520Recording%2525202019-03-24%252520at%25252011.31%252520AM.gif)
 
 ### Chatbot experience
+| CBT flow  | Result dashboard |
+| ------------- | ------------- |
 | ![image](https://d2ddoduugvun08.cloudfront.net/items/3f2L0A461i2S2J2N163G/Screen%20Recording%202019-03-24%20at%2012.04%20PM.gif) | ![image](https://d2ddoduugvun08.cloudfront.net/items/3b140d2u462i3X3R1f2K/Screen%20Recording%202019-03-24%20at%2012.05%20PM.gif) |
 
 ## Start the application
