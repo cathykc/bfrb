@@ -15,8 +15,20 @@ const INITIAL_CONFIG = [
   },
 ];
 
-export default class Config extends React.Component {
+interface ConfigProps {
+  config: any;
+  saveConfig: any;
+}
+
+export default class Config extends React.Component<ConfigProps> {
+  handleAbtChange = (abtConfig) => {
+    const { config, saveConfig } = this.props;
+    config.config.abt_config = abtConfig;
+    saveConfig(config);
+  }
+
   public render(): JSX.Element {
+
     return (
       <div style={{ padding: 20 }}>
         <ConfigEditor

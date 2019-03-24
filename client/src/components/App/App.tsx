@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Config from '../../config/Config';
+import ConfigDashboard from '../../config/ConfigDashboard';
 import Dashboard from '../dashboard/Dashboard';
 import Landing from '../../Landing';
 import Nav from '../Nav/Nav';
@@ -24,7 +24,7 @@ export default class App extends React.Component {
             />
             <Route
               path="/config"
-              component={Config}
+              component={ConfigDashboard}
             />
           </div>
         </div>
