@@ -5,6 +5,7 @@ import './VerticalBarChart.css';
 interface Props {
     data: any[];
     chartTitle: string;
+    emphasisText: string;
 }
 
 interface VerticalBarChartState {
@@ -30,7 +31,8 @@ const randomData = getRandomData();
 export default class VerticalBarChart extends React.Component<Props, VerticalBarChartState> {
     static defaultProps: Props = {
         data: [],
-        chartTitle: ''
+        chartTitle: '',
+        emphasisText: ''
     };
     
     constructor(props: any) {
@@ -41,19 +43,27 @@ export default class VerticalBarChart extends React.Component<Props, VerticalBar
     }
 
     public render(): JSX.Element {
-        let { chartTitle } = this.props;
+        let { chartTitle, emphasisText } = this.props;
         let { data } = this.state;
         const chartWidth = 320;
         const chartHeight = 250;
         return(
             <div className="verticalBarChart">
-                <h3 className="chartHeader">{chartTitle}</h3>
+                <span className="chartHeader">{chartTitle}
+                    <strong>
+                        {emphasisText}
+                    </strong>
+                </span>
                 <XYPlot
                     xType="ordinal"
                     strokeWidth={5}
                     xDomain={bodyLocation}
                     width={chartWidth}
                     height={chartHeight}
+                    style={{
+                        'font-weight': 'bold',
+                        'font-family': 'sans-serif'
+                    }}
                 >
                     <XAxis />
                     <YAxis />
