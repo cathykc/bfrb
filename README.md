@@ -6,6 +6,7 @@
 ```
 source .envrc
 ```
+or do yourself a favor and install direnv
 
 In different terminal windows:
 
@@ -32,13 +33,13 @@ Check that the api is serving responses by going to http://localhost:5100/api
 ### Database
 ```
 createdb bfrb_dev
-# Run migrations - TO DO
+cd server
+python manage.py db upgrade
 ```
 
 ### Backend requirements
 ```
 virtualenv env
 source activate env/bin/activate
-cd server
 pip install -r requirements.txt
 ```

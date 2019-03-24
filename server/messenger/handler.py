@@ -14,7 +14,7 @@ import requests
 #   { prompt_key: 'site', prompt_text: 'Where are you picking' },
 # ]
 
-PAGE_ACCESS_TOKEN = "EAALcZCqwNKDkBACyb88m5reKztGAHS72IGohR2GHaWEXeUYD23gWOslrXq0afeJxhuSKVk2UZBbi9M5gG9FrZAYeER72JF9GfL7qNcViZCWO8Gm8kl3SNGVxvj5iXuT5ZAaKckm555ZBERXfDAZBccA1ovFMpxjn3QdMmKFZBjSqpAZDZD"
+PAGE_ACCESS_TOKEN = "EAALcZCqwNKDkBAKKNbrItcJU9JFQdER2qNZAl0JOavKpKWPtRZBqeEdU6pkDiAro4o8aUjv0DMjSZC4212v43lPjG8J87I9PD27zVydKmZBCFsCMpT4kBGhfDUvZBZAMp1xlDLgTpLyB0sEIZAMm6r2wmW2oy9T6dR7Rwye3g0U5UwZDZD"
 
 def handleMessage(sender_psid, received_message, payload):
   print(received_message);
@@ -32,19 +32,20 @@ def handleMessage(sender_psid, received_message, payload):
   if last_chat_state:
     print("Last Chat State: " + last_chat_state.prompt_key)
 
+  # Introduction
+  if last_chat_state == None:
+    sendTextMessage(sender_psid, u"introduction", "Hello! I'm Trichy the Pullbot 😁!")
+    sendTextMessage(sender_psid, "query_name", "Let's start by getting to know each other :). What's your name?")
+
   # Route to right intervention from the menu
-  if last_chat_state.prompt_key == "menu":
+  elif last_chat_state.prompt_key == "menu":
     if payload == "hi":
       sendTextMessage(sender_psid, "hi", "Hi!")
     elif payload == "is_pulling":
       sendTextMessage(sender_psid, "breathing", "No need to fret. Let's first do a quick breathing exercise.")
+
     else:
       sendTextMessage(sender_psid, "hi", "Ok")
-
-  # Introduction
-  elif last_chat_state == None:
-    sendTextMessage(sender_psid, u"introduction", "Hello! I'm Trichy the Pullbot 😁!")
-    sendTextMessage(sender_psid, "query_name", "Let's start by getting to know each other :). What's your name?")
 
   # Ask for name
   elif last_chat_state.prompt_key == "query_name":

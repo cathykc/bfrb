@@ -30,3 +30,20 @@ class ChatState(db.Model):
     def __init__(self, client_id, prompt_key):
         self.client_id = client_id
         self.prompt_key = prompt_key
+
+class TherapyConfig(db.Model):
+    __tablename__ = 'therapy_configs'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    config = db.Column(db.JSON)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.now)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now)
+
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'config': self.config,
+        }
