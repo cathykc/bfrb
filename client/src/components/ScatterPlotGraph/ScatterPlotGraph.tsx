@@ -120,7 +120,7 @@ export default class ScatterPlotGraph extends React.Component<Props, ScatterPlot
 
         return (
             <div className="scatterPlot">
-                <span className="chartHeader">{chartTitle}
+                <span className="scatterPlot_header">{chartTitle}
                     <strong className="black">
                         {emphasisText}
                     </strong>

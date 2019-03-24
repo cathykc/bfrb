@@ -8,6 +8,6 @@
     box-shadow: 0 3px 6px 1px #777;
 }
 
-.chartHeader {
-    margin-top: 15px;
+.verticalBarChart_header {
+    margin: 20px 30px 15px 50px;
 }

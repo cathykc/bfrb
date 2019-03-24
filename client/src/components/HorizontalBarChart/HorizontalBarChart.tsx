@@ -125,6 +125,8 @@ export default class HorizontalBarChart extends React.Component<Props, Horizonta
                     }}
                 >
                     <XAxis
+                        tickTotal={3}
+                        tickValues={[0, 10, 20]}
                         style={{
                             line: {stroke: '#ADDDE1'},
                             ticks: {stroke: '#ADDDE1'},

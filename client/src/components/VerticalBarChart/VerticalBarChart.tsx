@@ -103,14 +103,14 @@ export default class VerticalBarChart extends React.Component<Props, VerticalBar
                    500);
     }
 
-    public render(): JSX.Element {
+    public render(): JSX.Element {  
         let { chartTitle, emphasisText } = this.props;
         let { data } = this.state;
         const chartWidth = 320;
         const chartHeight = 250;
         return(
             <div className="verticalBarChart">
-                <span className="chartHeader">{chartTitle}
+                <span className="verticalBarChart_header">{chartTitle}
                     <strong className="black">
                         {emphasisText}
                     </strong>
@@ -124,19 +124,25 @@ export default class VerticalBarChart extends React.Component<Props, VerticalBar
                     animation={true}
                     style={{
                         'font-size': '12px',
-                        'font-weight': '500',
+                        'font-weight': '600',
                         'color': '#12939A',
                     }}
                 >
-                    <XAxis />
-                    <YAxis
-                        top={0}
-                        tickLabelAngle={-90}
+                    <XAxis
                         style={{
                             line: {stroke: '#ADDDE1'},
                             ticks: {stroke: '#ADDDE1'},
-                            text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600}
-                        }}  
+                            text: {stroke: 'none', fill: '#6b6b76', fontSize: 13, fontWeight: 600},
+                        }}
+                    />
+                    <YAxis
+                        tickTotal={3}
+                        tickValues={[0, 10, 20]}
+                        style={{
+                            line: {stroke: '#ADDDE1'},
+                            ticks: {stroke: '#ADDDE1'},
+                            text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600},
+                        }}
                     />
                     <VerticalBarSeries
                         color="#59E4EC"
