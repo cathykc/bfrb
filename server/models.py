@@ -26,3 +26,13 @@ class ChatState(db.Model):
     client_id = db.Column(db.String)
     prompt_key = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
+
+
+class TherapyConfig(db.Model):
+    __tablename__ = 'therapy_configs'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    config = db.Column(db.String)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.now)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now)

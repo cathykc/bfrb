@@ -40,6 +40,16 @@ def webhook_fb():
     return "", 200
 
 
+@API_BP.route('/get_configs')
+def get_configs():
+    pass
+
+
+@API_BP.route('/update_config', methods=['POST'])
+def update_config():
+    pass
+
+
 @API_BP.route('/fetch_data', methods=['GET'])
 def fetch_tasks():
     client_id = request.args.get('client_id')
