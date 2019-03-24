@@ -3,6 +3,8 @@ import HorizontalBarChart from '../HorizontalBarChart/HorizontalBarChart';
 import ScatterPlotGraph from '../ScatterPlotGraph/ScatterPlotGraph';
 import VerticalBarChart from '../VerticalBarChart/VerticalBarChart';
 
+import './dashboard.css';
+
 interface DashboardState {
   data: any[];
 }
@@ -66,10 +68,13 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
     let locationData = this.filterLocationData(this.state.data);
     
     return(
-      <div>
-        <HorizontalBarChart chartTitle={'Where did you pull?'} data={locationData}/>
-        <ScatterPlotGraph data={locationData} chartTitle={'When did you pull?'}/>
-        <VerticalBarChart chartTitle={'Site of pulling'} data={locationData}/>
+      <div className="dashboard">
+        <HorizontalBarChart 
+            chartTitle={'We noticed that you spend the most time pulling at: Home'}
+            data={locationData}
+        />
+        <ScatterPlotGraph data={locationData} chartTitle={'You tend to pull on: Wednesday nights'}/>
+        <VerticalBarChart chartTitle={'You tend to pull your: Brows and Scalp'} data={locationData}/>
       </div>
     );
   }

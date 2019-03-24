@@ -3,6 +3,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background: white;
+    margin: 15px;
+    box-shadow: 0 3px 6px 1px #777;
 }
 
 .chartHeader {
