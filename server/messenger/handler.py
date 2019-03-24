@@ -43,7 +43,8 @@ def handleMessage(sender_psid, received_message, payload):
       sendTextMessage(sender_psid, "hi", "Hi!")
     elif payload == "is_pulling":
       sendTextMessage(sender_psid, "breathing_explain", "No need to fret. Kudos to you for hitting me up 😎! Let's first do a quick breathing exercise.")
-      sendQuickReplies(sender_psid, "breathing_gif", "[INSERT KRISTEN's GIF HERE]", [("I'm done", "breathing_done")])
+      sendGIF(sender_psid, "breathing_gif", "https://media.giphy.com/media/3ouRtqtUQaw0PNQIz4/giphy.gif")
+      sendQuickReplies(sender_psid, "breathing_gif", "Do that for 30 seconds. Let me know when you're done.", [("I'm done", "breathing_done")])
     else:
       sendTextMessage(sender_psid, "hi", "Ok")
 
@@ -112,6 +113,10 @@ def handleMessage(sender_psid, received_message, payload):
       ("😎 Yea! 💪", "ok"),
     ])
 
+  # Handle end of dialogs with nothing
+  elif last_chat_state.prompt_key == "finishing_pull_flow":
+    sendTextMessage(sender_psid, "finish_flow", "👋")
+
   # Ask for name
   elif last_chat_state.prompt_key == "query_name":
     name = received_message
@@ -140,6 +145,22 @@ def handleMessage(sender_psid, received_message, payload):
   # SAVE reponse in CLIENT DATA
   # if received_message == "help":
 
+def sendGIF(sender_psid, prompt_key, from_url):
+  message_data = {
+    'recipient': {
+      'id': sender_psid
+    },
+    'message': {
+      "attachment": {
+        "type": "image", 
+        "payload":{
+          "url": from_url, 
+          "is_reusable": True
+        }
+      }
+    }
+  }
+  callSendAPI(sender_psid, prompt_key, message_data)
 
 def sendTextMessage(sender_psid, prompt_key, text):
   message_data = {
