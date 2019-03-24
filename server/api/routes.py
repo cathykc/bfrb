@@ -1,5 +1,6 @@
 """ API endpoints """
 from flask import Blueprint, jsonify, request
+from models import TherapyConfig
 from store import DB as db
 
 from messenger.handler import handleMessage
@@ -42,12 +43,27 @@ def webhook_fb():
 
 @API_BP.route('/get_configs')
 def get_configs():
-    pass
+    configs = TherapyConfig.query.all()
+    return jsonify([config.serialize() for config in configs])
 
 
 @API_BP.route('/update_config', methods=['POST'])
 def update_config():
-    pass
+    req_data = request.get_json()
+    name = req_data['name']
+    config = req_data['config']
+
+
+    config = TherapyConfig.query.filter(TherapyConfig.id == req_data['id']).first()
+    if config:
+        config.name = name
+        config.config = config
+    else:
+        config = TherapyConfig(name, config)
+        db.session.add(config)
+    db.session.commit()
+
+    return jsonify(config.serialize())
 
 
 @API_BP.route('/fetch_data', methods=['GET'])

@@ -33,6 +33,14 @@ class TherapyConfig(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
-    config = db.Column(db.String)
+    config = db.Column(db.JSON)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
+
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'config': self.config,
+        }
