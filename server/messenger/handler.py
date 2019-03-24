@@ -42,10 +42,75 @@ def handleMessage(sender_psid, received_message, payload):
     if payload == "hi":
       sendTextMessage(sender_psid, "hi", "Hi!")
     elif payload == "is_pulling":
-      sendTextMessage(sender_psid, "breathing", "No need to fret. Let's first do a quick breathing exercise.")
-
+      sendTextMessage(sender_psid, "breathing_explain", "No need to fret. Kudos to you for hitting me up 😎! Let's first do a quick breathing exercise.")
+      sendQuickReplies(sender_psid, "breathing_gif", "[INSERT KRISTEN's GIF HERE]", [("I'm done", "breathing_done")])
     else:
       sendTextMessage(sender_psid, "hi", "Ok")
+
+  # Send breathing excercise
+  elif last_chat_state.prompt_key == "breathing_gif":
+    sendTextMessage(sender_psid, None, "I'm going to ask you a couple of questions.")
+    sendQuickReplies(sender_psid, "query_location", "Where are you right now?", [
+      ("Home 🏠", "home"),
+      ("Work 🖥", "work"),
+      ("School 🏫", "school"),
+      ("Somewhere else", "other"),
+    ])
+
+  # Query for location
+  elif last_chat_state.prompt_key == "query_location":
+    pull_location = payload
+    # addClientData(sender_psid, "query_location", pull_location)
+    sendQuickReplies(sender_psid, "query_site", "Where were you pulling from?", [
+      ("Head", "head"),
+      ("Eyebrows", "eyebrows"),
+      ("Eyelashes", "eyelashes"),
+      ("Other", "other"),
+    ])
+
+  # Store location, and query pull site
+  elif last_chat_state.prompt_key == "query_site":
+    pull_site = payload
+    # addClientData(sender_psid, "query_site", pull_site)
+    sendQuickReplies(sender_psid, "query_severity", "How bad did you pull from 1 (just a hair or two) to 5 (it was a long session 😢)?", [
+        ("1", "1"),
+        ("2", "2"),
+        ("3", "3"),
+        ("4", "4"),
+        ("5", "5"),
+      ])
+
+  # Store pull site, and query severity
+  elif last_chat_state.prompt_key == "query_severity":
+    pull_severity = payload
+    # addClientData(sender_psid, "query_severity", pull_severity)
+    sendQuickReplies(sender_psid, "start_query_thoughts", "Do you have a few minutes to tell me about how you were feeling and what you were thinking?", [
+      ("Sure", "sure"),
+    ])
+
+  # Store severity, and query thoughts
+  elif last_chat_state.prompt_key == "start_query_thoughts":
+    sendQuickReplies(sender_psid, "query_feelings", "When the pulling started, how were you feeling?", [
+        ("Happy 😁", "happy"),
+        ("Sad 😞", "sad"),
+        ("Stressed 😰", "stressed"),
+        ("Tired😴", "tired"),
+        ("Bored 😒", "bored"),
+      ])
+
+  # Store feeling, and query for thoughts
+  elif last_chat_state.prompt_key == "query_feelings":
+    pull_feeling = payload
+    # addClientData(sender_psid, "query_feelings", pull_feeling)
+    sendTextMessage(sender_psid, "query_thoughts", "What were you thinking about?")
+
+  # Store thoughts, and thank the user
+  elif last_chat_state.prompt_key == "query_thoughts":
+    pull_thoughts = payload
+    # addClientData(sender_psid, "query_thoughts", pull_thoughts)
+    sendQuickReplies(sender_psid, "finishing_pull_flow", "Thanks for your answers. Now get back out there 😁!", [
+      ("😎 Yea! 💪", "ok"),
+    ])
 
   # Ask for name
   elif last_chat_state.prompt_key == "query_name":
@@ -104,6 +169,17 @@ def addChatState(sender_psid, prompt_key):
   new_chat_state = ChatState(sender_psid, prompt_key)
   db.session.add(new_chat_state)
   db.session.commit()
+
+def addClientData(sender_psid, prompt_key, response):
+
+  # determine session_id from the number of `query_thoughts` client datas that exist
+  num_client_data = ClientData.query.filter_by(prompt_key='query_thoughts').all()
+  session_id = num_client_data
+
+  new_client_data = ClientData(sender_psid, -1, session_id, prompt_key, response)
+  db.session.add(new_client_data)
+  db.session.commit()
+
 
 def callSendAPI(sender_psid, prompt_key, message_data):
   if prompt_key:

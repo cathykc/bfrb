@@ -13,11 +13,17 @@ class ClientData(db.Model):
     session_id = db.Column(db.Integer)
 
     prompt_key = db.Column(db.String)
-    prompt_text = db.Column(db.String)
+    prompt_text = db.Column(db.String, nullable=True)
 
     response = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
 
+    def __init__(self, client_id, config_id, session_id, prompt_key, response):
+        self.client_id = client_id
+        self.config_id = config_id
+        self.session_id = session_id
+        self.prompt_key = prompt_key
+        self.response = response
 
 class ChatState(db.Model):
     __tablename__ = 'chat_state'
