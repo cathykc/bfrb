@@ -13,3 +13,20 @@
     width: 100%;
     height: 100%;
 }
+
+.patient_container {
+    width: 150px;
+    padding-top: 20px;
+}
+
+.patient {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 75px;
+}
+
+.centered {
+    width: 100%;
+    text-align: center;
+}
