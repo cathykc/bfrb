@@ -20,7 +20,7 @@ export default class ConfigDashboard extends React.Component<{}, ConfigDashboard
     };
   }
 
-  componentDidMount() {
+  fetchConfigs = () => {
     fetch('/api/get_configs', {
       method: 'GET',
     }).then(fetchResponse => {
@@ -32,6 +32,10 @@ export default class ConfigDashboard extends React.Component<{}, ConfigDashboard
     }).then(responseBody => {
       this.setState({ configs: responseBody });
     });
+  }
+
+  componentDidMount() {
+    this.fetchConfigs();
   }
 
   handleItemClick = (e, { data }) => {
@@ -56,7 +60,7 @@ export default class ConfigDashboard extends React.Component<{}, ConfigDashboard
       }
       return fetchResponse.json();
     }).then(responseBody => {
-      console.log(responseBody);
+      this.fetchConfigs();
     });
   }
 
