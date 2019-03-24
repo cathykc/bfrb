@@ -51,9 +51,102 @@ def handleMessage(sender_psid, received_message, payload):
       sendGIF(sender_psid, "breathing_gif", "https://media.giphy.com/media/3ouRtqtUQaw0PNQIz4/giphy.gif")
       sendQuickReplies(sender_psid, "solo_breathing_gif", "Let me know when you're done.", [("I'm done", "breathing_done")])
 
+    # Start MGH-HPS
+    elif payload == "start_benchmark":
+      sendTextMessage(sender_psid, None, "Ok! I'm going to ask you a few questions which will help Deborah understand how you're doing.")
+      sendTextMessage(sender_psid, None, "This shouldn't take more than 15 minutes.")
+      sendQuickReplies(sender_psid, "confirm_ready", "Ready to start?", [
+        ("Let's do this!", "a")
+      ])
+
     # Catch all
     else:
       sendTextMessage(sender_psid, "hi", "👋")
+
+  # Benchmark question 1
+  elif last_chat_state.prompt_key == "confirm_ready":
+    sendQuickReplies(sender_psid, "benchmark_q1", """
+      [1/7] On an average day, *how often* did you feel the urge to pull your hair?\n
+      0 - This week I felt *no* urges to pull my hair.
+      1 - This week I felt an *occasional* urge to pull my hair.
+      2 - This week I felt an urge to pull my hair *often*.
+      3 - This week I felt an urge to pull my hair *very often*.
+      4 - This week I felt near *constant* urges to pull my hair.
+    """, [
+        ("0", "0"),
+        ("1", "1"),
+        ("2", "2"),
+        ("3", "3"),
+        ("4", "4"),
+      ])
+
+  # Benchmark question 2
+  elif last_chat_state.prompt_key == "benchmark_q1":
+    sendQuickReplies(sender_psid, "benchmark_q2", """
+      [2/7] On an average day, *how intense or “strong”* were the urges to pull your hair?\n
+      0 - This week I *did not feel* any urges to pull my hair. 
+      1 - This week I felt *mild* urges to pull my hair.
+      2 - This week I felt *moderate* urges to pull my hair. 
+      3 - This week I felt *severe* urges to pull my hair. 
+      4 - This week I felt *extreme* urges to pull my hair. 
+    """, [
+        ("0", "0"),
+        ("1", "1"),
+        ("2", "2"),
+        ("3", "3"),
+        ("4", "4"),
+      ])
+
+  # Benchmark question 3
+  elif last_chat_state.prompt_key == "benchmark_q2":
+    sendQuickReplies(sender_psid, "benchmark_q3", """
+      [3/7] On an average day, *how much control* do you have over the urges to pull your hair? \n
+      0 - This week I could *always* control the urges, or I did not feel any urges to pull my hair.  
+      1 - This week I was always able to distract myself from the urges to pull my hair *most of the time*. 
+      2 - This week I was able to distract myself from the urges to pull my hair *some of the time*. 
+      3 - This week I was able to distract myself from the urges to pull my hair *rarely*. 
+      4 - This week I was *never* able to distract myself from the urges to pull my hair. 
+    """, [
+        ("0", "0"),
+        ("1", "1"),
+        ("2", "2"),
+        ("3", "3"),
+        ("4", "4"),
+      ])
+
+  # Benchmark question 4
+  elif last_chat_state.prompt_key == "benchmark_q3":
+    sendQuickReplies(sender_psid, "benchmark_q4", """
+      [4/7] On an average day, *how often* did you actually pull your hair? \n
+      0 - This week I *did not* pull my hair. 
+      1 - This week I pulled my hair *occasionally*.
+      2 - This week I pulled my hair *often*.
+      3 - This week I pulled my hair *very often*.
+      4 - This week I pulled my hair so often I felt like I was *always* doing it.
+    """, [
+        ("0", "0"),
+        ("1", "1"),
+        ("2", "2"),
+        ("3", "3"),
+        ("4", "4"),
+      ])
+
+  # Benchmark question 5
+  elif last_chat_state.prompt_key == "benchmark_q4":
+    sendQuickReplies(sender_psid, "finish_flow", """
+      [5/7] On an average day, *how often did you make an attempt to stop* yourself from actually pulling your hair?  \n
+      0 - This week I felt no urges to pull my hair.
+      1 - This week I tried to resist the urge to pull my hair *almost all of the time*. 
+      2 - This week I tried to resist the urge to pull my hair *some of the time*. 
+      3 - This week I tried to resist the urge to pull my hair *rarely*.
+      4 - This week I *never* tried to resist the urge to pull my hair. 
+    """, [
+        ("0", "0"),
+        ("1", "1"),
+        ("2", "2"),
+        ("3", "3"),
+        ("4", "4"),
+      ])
 
   # Send breathing excercise
   elif last_chat_state.prompt_key == "solo_breathing_gif":
@@ -148,6 +241,7 @@ def handleMessage(sender_psid, received_message, payload):
     menuOptions = [
       ("I'm pulling 😔", "is_pulling"),
       ("I need a breather 💨", "need_breather"),
+      ("Take the MGH-HPS 📝", "start_benchmark")
     ]
     sendQuickReplies(sender_psid, "menu", "How can I help? 👋", menuOptions)
 
