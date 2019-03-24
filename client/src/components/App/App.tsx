@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import ConfigDashboard from '../../config/ConfigDashboard';
 import Dashboard from '../dashboard/Dashboard';
-import Landing from '../../Landing';
 import Nav from '../Nav/Nav';
 import Header from '../Header/Header';
 
@@ -17,7 +16,7 @@ export default class App extends React.Component {
           <Header />
           <Nav />
           <div className="content">
-            <Route exact={true} path="/" component={Landing} />
+            <Route exact={true} path="/" component={Dashboard} />
             <Route
               path="/dashboard*"
               component={Dashboard}
