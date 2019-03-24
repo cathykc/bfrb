@@ -140,6 +140,7 @@ def handleMessage(sender_psid, received_message, payload):
   # SAVE reponse in CLIENT DATA
   # if received_message == "help":
 
+
 def sendTextMessage(sender_psid, prompt_key, text):
   message_data = {
     'recipient': {
