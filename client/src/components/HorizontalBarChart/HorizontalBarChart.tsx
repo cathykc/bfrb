@@ -22,6 +22,33 @@ const series1 = [
         opacity: 1
     },
     {
+        x: 20,
+        y: '🏫',
+        color: 6,
+        opacity: 0.7
+    },
+    {
+        x: 20,
+        y: '🖥',
+        color: 8,
+        opacity: 0.85
+    },
+    {
+        x: 20,
+        y: '?',
+        color: 2,
+        opacity: 0.6
+    }
+];
+
+const series2 = [
+    {
+        x: 20,
+        y: '🏠',
+        color: 'rgb(17, 109, 114)',
+        opacity: 1
+    },
+    {
         x: 10,
         y: '🏫',
         color: 6,
@@ -67,6 +94,13 @@ export default class HorizontalBarChart extends React.Component<Props, Horizonta
         };
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({ data: series2 });
+            },
+                   500);
+    }
+    
     public render(): JSX.Element {
         let { chartTitle, emphasisText } = this.props;
         let { data } = this.state;
@@ -74,21 +108,29 @@ export default class HorizontalBarChart extends React.Component<Props, Horizonta
         const chartHeight = 250;
         return(
             <div className="horizontalBarChart">
-                <span className="chartHeader">{chartTitle}
-                    <strong>{emphasisText}</strong>
+                <span className="horizontalBarChart_header">{chartTitle}
+                    <strong className="black">{emphasisText}</strong>
                 </span>
                 <XYPlot
                     yType="ordinal"
                     yDomain={LOCATION}
                     width={chartWidth}
                     height={chartHeight}
+                    marginBottom={'5px'}
+                    animation={true}
                     style={{
                         'font-weight': 'bold',
                         'font-family': 'sans-serif',
                         'font-size': '11px'
                     }}
                 >
-                    <XAxis />
+                    <XAxis
+                        style={{
+                            line: {stroke: '#ADDDE1'},
+                            ticks: {stroke: '#ADDDE1'},
+                            text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600},
+                        }}
+                    />
                     <YAxis />
                     <HorizontalBarSeries
                         color="#59E4EC"

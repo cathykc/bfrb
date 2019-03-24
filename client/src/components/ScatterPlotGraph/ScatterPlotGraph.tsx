@@ -32,29 +32,58 @@ const dayRange = [
 ];
 
 const timeRange = [
-    2, 4, 6, 8, 10, 12 , 14, 16, 18, 20, 22, 24
+    6, 8, 10, 12 , 14, 16, 18, 20, 22
 ];
 
 let randomData = [];
 function getRandomData(day: number, hour: number, frequency: number) {
+    if (day === 3) {
+        frequency = hour * frequency;
+    }
     randomData.push({
         x: hour,
         y: dayRange[day],
         label: dayRange[day],
-        size: Math.random() * 10,
+        size: Math.floor(Math.random() * frequency),
         color: Math.random() * 10,
         opacity: Math.random() * 0.5 + 0.5
     });
 }
 
 for (let hour of timeRange) {
-    getRandomData(0, hour, 20);
-    getRandomData(1, hour, 10);
-    getRandomData(2, hour, 20);
-    getRandomData(3, hour, 20);
-    getRandomData(4, hour, 20);
-    getRandomData(5, hour, 20);
-    getRandomData(6, hour, 20);
+    getRandomData(0, hour, 8);
+    getRandomData(1, hour, 11);
+    getRandomData(2, hour, 7);
+    getRandomData(3, hour, 1);
+    getRandomData(4, hour, 9);
+    getRandomData(5, hour, 1);
+    getRandomData(6, hour, 6);
+}
+
+randomData.push({
+    x: 4,
+    y: 1,
+    label: dayRange[4],
+    size: 0,
+    color: Math.random() * 10,
+    opacity: Math.random() * 0.5 + 0.5
+});
+
+randomData.push({
+    x: 4,
+    y: 24,
+    label: dayRange[6],
+    size: 0,
+    color: Math.random() * 10,
+    opacity: Math.random() * 0.5 + 0.5
+});
+
+function myFormatter(t: number) {
+    return (
+        <tspan>
+            <tspan x="0" dy="1em">{`${t}:00`}</tspan>
+        </tspan>
+    );
 }
 
 export default class ScatterPlotGraph extends React.Component<Props, ScatterPlotGraphState> {
@@ -92,19 +121,18 @@ export default class ScatterPlotGraph extends React.Component<Props, ScatterPlot
         return (
             <div className="scatterPlot">
                 <span className="chartHeader">{chartTitle}
-                    <strong>
+                    <strong className="black">
                         {emphasisText}
                     </strong>
                 </span>
                 <div>
                     <XYPlot
-                        xType="ordinal"
-                        xDomain={timeRange}
                         yType="ordinal"
                         yDomain={dayRange}
                         onMouseLeave={() => this.setState({value: false})}
                         width={chartWidth}
                         height={chartHeight}
+                        animation={{duration: 3}}
                         style={{
                             'font-weight': 'bold',
                             'font-family': 'sans-serif',
@@ -112,14 +140,27 @@ export default class ScatterPlotGraph extends React.Component<Props, ScatterPlot
                         }}
                     >
                         <VerticalGridLines/>
-                        <HorizontalGridLines/>
-                        <XAxis/>
+                        <HorizontalGridLines
+                            style={{
+                                text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600},
+                            }}
+                        />
+                        <XAxis
+                            style={{
+                                line: {stroke: '#ADDDE1'},
+                                ticks: {stroke: '#ADDDE1'},
+                                text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600},
+                            }}
+                            tickTotal={6}
+                            tickValues={[0, 4, 8, 12, 16, 20]}
+                            tickFormat={myFormatter}
+                        />
                         <YAxis
                             style={{
                                 'margin-right': '10px'
                             }}
                         />
-                        <MarkSeries {...markSeriesProps} />
+                        <MarkSeries {...markSeriesProps}/>
                     </XYPlot>
                 </div>
             </div>

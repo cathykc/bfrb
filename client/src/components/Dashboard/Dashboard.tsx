@@ -74,16 +74,16 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
             emphasisText={'Home 🏠'}
             data={locationData}
         />
-        <ScatterPlotGraph 
-            data={locationData}
-            chartTitle={'You tend to pull on: '}
-            emphasisText={'Wednesday nights'}
-        />
         <VerticalBarChart 
             chartTitle={'You tend to pull your: '}
             data={locationData}
             emphasisText={'Brows and Scalp'}
         />
+        <ScatterPlotGraph
+              data={locationData}
+              chartTitle={'You tend to pull on: '}
+              emphasisText={'Wednesday nights'}
+        />  
       </div>
     );
   }

@@ -13,20 +13,74 @@ interface VerticalBarChartState {
 }
 
 const bodyLocation = ['Scalp', 'Brows', 'Lashes', 'Other'];
+//
+// function getRandomData() {
+//     return new Array(50).fill(0).map(row => {
+//         let day = Math.floor(Math.random() * (4));
+//         return {
+//             y: Math.floor((Math.random() * 24) / 2) * 2,
+//             x: bodyLocation[day],
+//             color: Math.random() * 10,
+//             opacity: Math.random() * 0.5 + 0.5
+//         };
+//     });
+// }
+//
+// const randomData = getRandomData();
 
-function getRandomData() {
-    return new Array(50).fill(0).map(row => {
-        let day = Math.floor(Math.random() * (4));
-        return {
-            y: Math.floor((Math.random() * 24) / 2) * 2,
-            x: bodyLocation[day],
-            color: Math.random() * 10,
-            opacity: Math.random() * 0.5 + 0.5
-        };
-    });
-}
+const series1 = [
+    {
+        y: 20,
+        x: 'Scalp',
+        color: 'rgb(17, 109, 114)',
+        opacity: 1
+    },
+    {
+        y: 20,
+        x: 'Lashes',
+        color: 6,
+        opacity: 0.7
+    },
+    {
+        y: 20,
+        x: 'Brows',
+        color: 8,
+        opacity: 0.85
+    },
+    {
+        y: 20,
+        x: 'Other',
+        color: 2,
+        opacity: 0.6
+    }
+];
 
-const randomData = getRandomData();
+const series2 = [
+    {
+        y: 20,
+        x: 'Scalp',
+        color: 'rgb(17, 109, 114)',
+        opacity: 1
+    },
+    {
+        y: 10,
+        x: 'Lashes',
+        color: 6,
+        opacity: 0.7
+    },
+    {
+        y: 14,
+        x: 'Brows',
+        color: 8,
+        opacity: 0.85
+    },
+    {
+        y: 6,
+        x: 'Other',
+        color: 2,
+        opacity: 0.6
+    }
+];
 
 export default class VerticalBarChart extends React.Component<Props, VerticalBarChartState> {
     static defaultProps: Props = {
@@ -38,8 +92,15 @@ export default class VerticalBarChart extends React.Component<Props, VerticalBar
     constructor(props: any) {
         super(props);
         this.state = {
-            data: randomData,
+            data: series1,
         };
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+                this.setState({ data: series2 });
+            },
+                   500);
     }
 
     public render(): JSX.Element {
@@ -50,7 +111,7 @@ export default class VerticalBarChart extends React.Component<Props, VerticalBar
         return(
             <div className="verticalBarChart">
                 <span className="chartHeader">{chartTitle}
-                    <strong>
+                    <strong className="black">
                         {emphasisText}
                     </strong>
                 </span>
@@ -60,13 +121,23 @@ export default class VerticalBarChart extends React.Component<Props, VerticalBar
                     xDomain={bodyLocation}
                     width={chartWidth}
                     height={chartHeight}
+                    animation={true}
                     style={{
-                        'font-weight': 'bold',
-                        'font-family': 'sans-serif'
+                        'font-size': '12px',
+                        'font-weight': '500',
+                        'color': '#12939A',
                     }}
                 >
                     <XAxis />
-                    <YAxis />
+                    <YAxis
+                        top={0}
+                        tickLabelAngle={-90}
+                        style={{
+                            line: {stroke: '#ADDDE1'},
+                            ticks: {stroke: '#ADDDE1'},
+                            text: {stroke: 'none', fill: '#6b6b76', fontWeight: 600}
+                        }}  
+                    />
                     <VerticalBarSeries
                         color="#59E4EC"
                         data={data}
