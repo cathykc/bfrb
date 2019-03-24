@@ -6,14 +6,14 @@ import { Menu } from 'semantic-ui-react';
 import './Nav.css';
 
 interface NavState {
-  activeItem: 'home' | 'dashboard' | 'config';
+  activeItem: 'dashboard' | 'config';
 }
 
 export default class Nav extends React.Component<{}, NavState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      activeItem: 'home',
+      activeItem: null,
     };
   }
 
@@ -25,13 +25,6 @@ export default class Nav extends React.Component<{}, NavState> {
     return (
       <div className="nav-menu">
         <Menu secondary={true}>
-          <Menu.Item
-            as={Link}
-            name="home"
-            active={activeItem === 'home'}
-            onClick={this.handleItemClick}
-            to="/"
-          />
           <Menu.Item
             as={Link}
             name="dashboard"
