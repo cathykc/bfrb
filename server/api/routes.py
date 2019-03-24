@@ -51,17 +51,17 @@ def get_configs():
 def update_config():
     req_data = request.get_json()
     name = req_data['name']
-    config = req_data['config']
+    config_data = req_data['config']
 
-
-    config = TherapyConfig.query.filter(TherapyConfig.id == req_data['id']).first()
-    if config:
+    if req_data['id']:
+        config = TherapyConfig.query.filter(TherapyConfig.id == req_data['id']).first()
         config.name = name
-        config.config = config
+        config.config = config_data
+        db.session.commit()
     else:
-        config = TherapyConfig(name, config)
+        config = TherapyConfig(name, config_data)
         db.session.add(config)
-    db.session.commit()
+        db.session.commit()
 
     return jsonify(config.serialize())
 

@@ -37,6 +37,9 @@ class TherapyConfig(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
 
+    def __init__(self, name, config):
+        self.name = name
+        self.config = config
 
     def serialize(self):
         return {
