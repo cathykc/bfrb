@@ -1,6 +1,6 @@
 .ConfigEditor .question-card {
   position: relative;
-  width: 400px;
+  width: 500px;
 }
 
 /* Line connecting the question cards */
@@ -68,7 +68,7 @@
 
 /* stupid precedence wars because semantic UI uses !important */
 .ConfigEditor .new-question-button.basic.button {
-  width: 400px;
+  width: 500px;
   border-color: rgb(33, 37, 41); /* same as cards */
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5; /* same as cards */
   color: rgba(0, 0, 0, 0.87) !important; /* standard text color */

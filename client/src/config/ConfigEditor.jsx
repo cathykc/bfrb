@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Card, Input, Checkbox, Form, Button, Icon } from 'semantic-ui-react';
-import './ConfigEditor.css';
+
 import _ from 'lodash';
+import { Card, Input, Checkbox, Form, Button, Icon } from 'semantic-ui-react';
+
+import './ConfigEditor.css';
 
 const getDefaultQuestion = idx => {
   return {
