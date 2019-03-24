@@ -1,0 +1,47 @@
+.ConfigEditor .question-card {
+  position: relative;
+  width: 300px;
+}
+
+.ConfigEditor .question-card::before {
+  content: '';
+  height: 14px;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-1px);
+  border-right: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.ConfigEditor .question-prompt-text {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.ConfigEditor .question-prompt-text input {
+  width: 100%;
+  padding: 0;
+  border: none;
+}
+
+.ConfigEditor .question-save-as {
+  display: flex;
+}
+
+.ConfigEditor .delete-button {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 4px);
+}
+
+/* stupid precedence wars because semantic UI uses !important */
+.ConfigEditor .new-question-button.basic.button {
+  width: 300px;
+  border-color: rgb(33, 37, 41); /* same as cards */
+  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5; /* same as cards */
+  color: rgba(0, 0, 0, 0.87) !important; /* standard text color */
+}
+
+.ConfigEditor .new-question-button.basic.button:hover {
+  background-color: rgba(33, 133, 208, 0.1) !important;
+}

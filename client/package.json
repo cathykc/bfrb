@@ -7,6 +7,7 @@
     "@types/react": "^16.8.8",
     "@types/react-facebook-login": "^3.6.3",
     "@types/react-router-dom": "^4.3.1",
+    "lodash": "^4.17.11",
     "moment": "^2.22.1",
     "react": "^16.2.0",
     "react-datepicker": "^1.4.1",

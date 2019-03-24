@@ -2,3 +2,4 @@
 env
 *.pyc
 /client/build
+workon.fish
