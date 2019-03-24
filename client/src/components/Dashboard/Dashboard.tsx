@@ -70,11 +70,20 @@ export default class Dashboard extends React.Component<{}, DashboardState> {
     return(
       <div className="dashboard">
         <HorizontalBarChart 
-            chartTitle={'We noticed that you spend the most time pulling at: Home'}
+            chartTitle={'We noticed that you spend the most time pulling at: '}
+            emphasisText={'Home 🏠'}
             data={locationData}
         />
-        <ScatterPlotGraph data={locationData} chartTitle={'You tend to pull on: Wednesday nights'}/>
-        <VerticalBarChart chartTitle={'You tend to pull your: Brows and Scalp'} data={locationData}/>
+        <ScatterPlotGraph 
+            data={locationData}
+            chartTitle={'You tend to pull on: '}
+            emphasisText={'Wednesday nights'}
+        />
+        <VerticalBarChart 
+            chartTitle={'You tend to pull your: '}
+            data={locationData}
+            emphasisText={'Brows and Scalp'}
+        />
       </div>
     );
   }

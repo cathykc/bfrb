@@ -2,8 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80px;
-    border-bottom: 1px solid black;
+    margin-top: 12px;
 }
 
 .logo_container {
