@@ -14,7 +14,7 @@ const getDefaultQuestion = idx => {
 export default class ConfigEditor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { config: props.initialConfig || [] };
+    this.state = { config: props.initialConfig || [], isLoading: false, isSuccess: false };
   }
 
   // im sorry
@@ -68,10 +68,14 @@ export default class ConfigEditor extends React.Component {
     });
 
     this.props.onChange(tidyConfig);
+
+    // Hack to sim response
+    this.setState({ isLoading: true })
+    setTimeout(() => this.setState({ isLoading: false, isSuccess: true }), 1000);
   };
 
   render() {
-    const { config } = this.state;
+    const { config, isLoading, isSuccess } = this.state;
 
     return (
       <div className="ConfigEditor">
@@ -159,7 +163,7 @@ export default class ConfigEditor extends React.Component {
         </Button>
         <br />
         <br />
-        <Button primary={true} onClick={this.saveConfig}>
+        <Button primary={true} loading={isLoading} positive={isSuccess} onClick={this.saveConfig}>
           Save flow
         </Button>
       </div>
