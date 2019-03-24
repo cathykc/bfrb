@@ -1,8 +1,9 @@
 .ConfigEditor .question-card {
   position: relative;
-  width: 300px;
+  width: 400px;
 }
 
+/* Line connecting the question cards */
 .ConfigEditor .question-card::before {
   content: '';
   height: 14px;
@@ -10,12 +11,13 @@
   left: 50%;
   top: 100%;
   transform: translateX(-1px);
-  border-right: 2px solid rgba(0, 0, 0, 0.5);
+  border-right: 2px solid rgba(0, 0, 0, 0.3);
 }
 
 .ConfigEditor .question-prompt-text {
-  width: 100%;
-  margin-bottom: 8px;
+  /* leave space for the delete button */
+  width: calc(100% - 38px);
+  margin-bottom: 20px;
 }
 
 .ConfigEditor .question-prompt-text input {
@@ -24,19 +26,49 @@
   border: none;
 }
 
+.ConfigEditor .question-card .checkbox label {
+  /* override semantic UI */
+  padding-left: 4.2rem;
+}
+
+.ConfigEditor .editable-underline {
+  position: relative;
+}
+
+/* Some ugly hacks to get underlines on editable objects */
+.ConfigEditor .editable-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(100% + 2px);
+  width: 100%;
+  border-bottom: 1px solid rgba(33, 133, 208, 0.3);
+}
+
 .ConfigEditor .question-save-as {
   display: flex;
 }
 
+/* stupid precedence wars because semantic UI uses !important */
 .ConfigEditor .delete-button {
   position: absolute;
-  top: 0;
-  left: calc(100% + 4px);
+  top: 6px;
+  right: 6px;
+}
+
+.ConfigEditor .delete-button .basic.button {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ConfigEditor .delete-button .basic.button:hover {
+  background-color: red !important;
+  color: white !important;
 }
 
 /* stupid precedence wars because semantic UI uses !important */
 .ConfigEditor .new-question-button.basic.button {
-  width: 300px;
+  width: 400px;
   border-color: rgb(33, 37, 41); /* same as cards */
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5; /* same as cards */
   color: rgba(0, 0, 0, 0.87) !important; /* standard text color */

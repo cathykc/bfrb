@@ -21,14 +21,13 @@ interface ConfigProps {
 }
 
 export default class Config extends React.Component<ConfigProps> {
-  handleAbtChange = (abtConfig) => {
+  handleAbtChange = abtConfig => {
     const { config, saveConfig } = this.props;
     config.config.abt_config = abtConfig;
     saveConfig(config);
-  }
+  };
 
   public render(): JSX.Element {
-
     return (
       <div style={{ padding: 20 }}>
         <ConfigEditor

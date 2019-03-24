@@ -5,8 +5,8 @@ import _ from 'lodash';
 
 const getDefaultQuestion = idx => {
   return {
-    prompt_key: `answer${idx}`,
-    prompt_text: `Question ${idx}?`,
+    prompt_key: '',
+    prompt_text: '',
     prompt_type: 'text',
   };
 };
@@ -75,7 +75,8 @@ export default class ConfigEditor extends React.Component {
             <Card.Content>
               <Card.Header>
                 <Input
-                  className="question-prompt-text"
+                  className="question-prompt-text editable-underline"
+                  placeholder="What is your name?"
                   value={question.prompt_text}
                   onChange={event =>
                     this.editQuestion(idx, {
@@ -100,10 +101,13 @@ export default class ConfigEditor extends React.Component {
                   />
                 </Form.Field>
                 {question.response_type === 'choice' && (
-                  <Form.Field>
-                    <label>Options</label>
-                    <input
-                      placeholder="a, b, c"
+                  <Form.Field inline={true} style={{ marginBottom: '0.6em' }}>
+                    <label>Options:</label>
+                    <Input
+                      style={{ marginBottom: 3 }}
+                      className="editable-underline"
+                      transparent={true}
+                      placeholder="first, second, third"
                       value={question.response_options}
                       onChange={event =>
                         this.editQuestion(idx, {
@@ -113,9 +117,12 @@ export default class ConfigEditor extends React.Component {
                     />
                   </Form.Field>
                 )}
-                <Form.Field>
-                  <label>Save answer as</label>
-                  <input
+                <Form.Field inline={true}>
+                  <label>Save answer as:</label>
+                  <Input
+                    style={{ marginBottom: 3 }}
+                    className="editable-underline"
+                    transparent={true}
                     placeholder="answer"
                     value={question.prompt_key}
                     onChange={event =>
