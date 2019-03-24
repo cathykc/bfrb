@@ -66,7 +66,7 @@ export default class ConfigDashboard extends React.Component<{}, ConfigDashboard
 
   public render(): JSX.Element {
     const { activeConfig, configs } = this.state;
-
+    const activeConfigObj = find(configs, { 'id': activeConfig});
     return(
       <Grid>
         <Grid.Column width={3}>
@@ -94,7 +94,10 @@ export default class ConfigDashboard extends React.Component<{}, ConfigDashboard
 
         {activeConfig > -1 && <Grid.Column stretched={true} width={13}>
           <Segment>
-            <Config config={find(configs, { 'id': activeConfig})} saveConfig={this.handleSaveConfig}/>
+            <Config
+              config={activeConfigObj}
+              saveConfig={this.handleSaveConfig}
+            />
           </Segment>
         </Grid.Column>}
         {activeConfig === -1 && <Grid.Column stretched={true} width={13}>

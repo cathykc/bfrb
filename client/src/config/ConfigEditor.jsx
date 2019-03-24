@@ -17,6 +17,11 @@ export default class ConfigEditor extends React.Component {
     this.state = { config: props.initialConfig || [] };
   }
 
+  // im sorry
+  componentWillReceiveProps(nextProps) {
+    this.setState({ config: nextProps.initialConfig || [] });
+  }
+
   state = {
     config: [],
   };
