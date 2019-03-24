@@ -73,6 +73,16 @@ def update_config():
     return jsonify(config.serialize())
 
 
+@API_BP.route('/delete_config', methods=['POST'])
+def delete_config():
+    req_data = request.get_json()
+    TherapyConfig.query.filter_by(id=req_data['id']).delete()
+    db.session.commit()
+
+    return jsonify({}), 200
+
+
+
 @API_BP.route('/fetch_data', methods=['GET'])
 def fetch_tasks():
     client_id = request.args.get('client_id')
@@ -202,7 +212,7 @@ def fetch_tasks():
                 'timestamp': ""
             },
 
-            # How strong was your urge? 
+            # How strong was your urge?
             # response choice: 1-10 (Int)
             {
                 'key': "strength_of_urge",
@@ -221,7 +231,7 @@ def fetch_tasks():
                 'answer': "IM AN ANSWER",
                 'timestamp': ""
             },
-            # How much willpower did you have to resist? 
+            # How much willpower did you have to resist?
             # response choice: 1-10 (Int)
             {
                 'key': "strength_resist",
@@ -229,7 +239,7 @@ def fetch_tasks():
                 'answer': "IM AN ANSWER",
                 'timestamp': ""
             },
-            # How many times did you (ie pull you hair)? 
+            # How many times did you (ie pull you hair)?
             # response choice: 0-Infinity (Int)
             {
                 'key': "severity",

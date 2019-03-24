@@ -66,6 +66,27 @@ export default class ConfigDashboard extends React.Component<{}, ConfigDashboard
     });
   }
 
+  handleDeleteConfig = (configId) => {
+    fetch('/api/delete_config', {
+      method: 'POST',
+      body: JSON.stringify({
+        id: configId,
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(fetchResponse => {
+      if (fetchResponse.status !== 200) {
+        // TO DO: handle config update error
+        throw new Error('Config update not successful.');
+      }
+      return fetchResponse.json();
+    }).then(responseBody => {
+      this.fetchConfigs();
+      this.setState({ activeConfig: -1 });
+    });
+  }
+
   public render(): JSX.Element {
     const { activeConfig, configs } = this.state;
     const activeConfigObj = find(configs, { 'id': activeConfig});
@@ -100,6 +121,7 @@ export default class ConfigDashboard extends React.Component<{}, ConfigDashboard
               <Config
                 config={activeConfigObj}
                 saveConfig={this.handleSaveConfig}
+                deleteConfig={this.handleDeleteConfig}
               />
             </Segment>
           </Grid.Column>}

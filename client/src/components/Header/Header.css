@@ -15,15 +15,14 @@
 }
 
 .patient_container {
-    width: 150px;
     padding-top: 20px;
 }
 
 .patient {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
-    border-radius: 75px;
+    border-radius: 60px;
 }
 
 .centered {

@@ -4,6 +4,8 @@ import { Input } from 'semantic-ui-react';
 
 import ConfigEditor from './ConfigEditor';
 
+import './NewConfig.css';
+
 interface NewConfigProps {
   createConfig: any;
 }
@@ -37,8 +39,13 @@ export default class NewConfig extends React.Component<NewConfigProps, NewConfig
   public render(): JSX.Element {
     return (
       <div>
-        <Input label="Treatment name" placeholder="e.g. Trichotillomania" onChange={this.handleNameChange}/>
-        <hr />
+        <Input
+          className="name-input"
+          label="Treatment name"
+          placeholder="e.g. Trichotillomania"
+          onChange={this.handleNameChange}
+        />
+        <h4>Configure CBT flow</h4>
         <ConfigEditor initialConfig={this.state.config.abt_config} onChange={this.handleAbtChange}/>
       </div>
     );
