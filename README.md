@@ -6,6 +6,7 @@
 ```
 source .envrc
 ```
+or do yourself a favor and install direnv
 
 In different terminal windows:
 
